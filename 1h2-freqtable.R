@@ -7,7 +7,7 @@ cbind(table(attend))  # A & P on left side
 
 #Discrete Numeric Data
 
-color=c('Blue','Green','Magenta','Green','Black','Blue','Black')
+color=c('Blue','Green','Blue','Magenta','Blue','Green','Magenta','Black','Blue','Black')
 x2 = table(color)
 x2
 x2a = cbind(x2)
@@ -17,6 +17,7 @@ barplot(x2a)  # not good
 barplot(x2a, beside=T)  # Better
 unique(color) ; length(unique(color))
 barplot(x2a, beside=T, col=rainbow(length(unique(color))))
+barplot(x2a, beside=T, col=sort(unique(color)),names.arg = names(x2)) # names,arg is used to give name to the colors.
 pie(x2a)
 
 #Continuous Data 
@@ -32,7 +33,7 @@ breaks
 length(breaks)
 x3
 #x3[1] = 60; x3[2] = 75
-x3.cut = cut(x3, breaks)
+x3.cut = cut(x3, breaks) #x3.cut is the name of the variable
 x3.cut
 table(x3.cut)
 cbind(table(x3.cut))  #see it vertically
@@ -52,5 +53,6 @@ barplot(x3b, beside=T)
 barplot(x3b, beside=T, names.arg =rownames(x3b))
 plot(x3b)
 
-
+hist(x3,freq =F)
+hist(x3,breaks=63,col=1:15)
 # and so..on like previous eg
