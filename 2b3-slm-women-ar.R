@@ -9,8 +9,9 @@ fit = lm(weight ~ height, data=women)
 cor(women$height, women$weight)
 #there is Strong and Positive Relationship between height and weight
 plot(women$height, women$weight)
-par(mfrow=c(1,1))
+par(mfrow=c(1,1)) # multiple frames per row # diveded the screen into four different parts
 plot(fit, which=2)
+residuals(fit) #  
 plot(women)
 
 str(women)

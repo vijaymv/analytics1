@@ -14,20 +14,26 @@ head(omni1)
 
 #2nd Method : from CSV file
 #omni2 = read.csv(file.choose())
+omni2a = read.csv(./data/salesqty.csv)
+head(omni2a)
+omni2b = read.csv(file.choose()) # reading from local drive
+head(omni2b)
 
-#3rd Method : from gsheet 
+
+######################3rd Method : from gsheet ###################################
 library(gsheet)
 url = "https://docs.google.com/spreadsheets/d/1h7HU0X_Q4T5h5D1Q36qoK40Tplz94x_HZYHOJJC_edU/edit#gid=1595306231"
 omni3 = as.data.frame(gsheet::gsheet2tbl(url))
 head(omni3)
-#Make one of data frames active
-omni = omni1
+
+omni = omni1 #Make one of data frames active
 head(omni)
 str(omni)
 nrow(omni)
+summary(omni) #summary of the uploaded data
 #MLR  Create Multiple Linear Regression
 # we want to see how Sales Qty depend on Price and Promotion Values
-fit2 = lm(sales ~ price + promotion, data=omni)
+fit2 = lm(sales ~ price + promotion, data=omni)  # sales is depended variable, prce and promotion dependent variable
 
 # summary statistics of model IMP STEP
 summary(fit2)
@@ -35,7 +41,8 @@ summary(fit2)
 #F Stats pvalue = 2.86e-10 < 0.05 : Model Exists
 #At least 1 IV can be used to predict sales
 names(summary(fit2))
-summary(fit2)$adj.r.squared  # Adjt R2 here > .6 
+summary(fit2)$adj.r.s
+quared  # Adjt R2 here > .6 
 #60% of variation in sales is explained by price and promotion
 
 #coefficients b1, b2
@@ -59,17 +66,18 @@ p2sales = predict(fit2, newdata=ndata2)
 cbind(ndata2, p2sales)
 
 #Assumptions
-par(mfrow=c(2,2))
+par(mfrow=c(2,2)) # to plot every assumtion checkings together
 plot(fit2)
 par(mfrow=c(1,1))
 
 plot(fit2,which=1)  # no pattern, equal variance
 plot(fit2,2)  # Residuals are normally distributed
 plot(fit2,3)  # No hetero-scedascity
-plot(fit2,4)  # tells outliers which affect model
-omni[-c(11,14,15),]
+plot(fit2,4)
+# tells outliers which affect model
+omni[-c(11,14,15),] 
 
-fit3 = lm(sales ~ price + promotion, data=omni[-c(11,14,15),])
+fit3 = lm(sales ~ price + promotion, data=omni[-c(11,14,15),])# removed outliers.
 plot(fit3,4)
 summary(fit3)
 
