@@ -1,15 +1,17 @@
 # factor
 
+# factor converts a particualr variable into particular libraries
+
 (gender = sample(c('M','F'),size= 20,replace=T))
 summary(gender)
 genderF = factor(gender)
 summary(genderF)
 
 
-(likscale = sample(c('ex','gd','sat','poor'),size = 20,replace = T))
+(likscale = sample(c('ex','gd','sat','poor'),size = 20,replace = T)) # crete diff combinations of likert scale vector.
 summary(likscale)
 
-faclkrt = factor(likscale)
+faclkrt = factor(likscale) # vector converted into factor type so that we ger summary of number of ex,gd,sat,poor
 faclkrt
 summary(faclkrt)
 class(faclkrt)
