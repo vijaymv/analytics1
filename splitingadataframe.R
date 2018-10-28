@@ -39,3 +39,14 @@ nrow(train)
 nrow(test)
 
 library(caret) ###using caret library
+table(df$gender) # tells s how many males any females in the whole data set
+prop.table(table(df$gender)) # to get the proportion of males and females  in the table
+index3 = createDataPartition(y=df$gender,p=.7,list=F) # the same proportion of gender should be maintained in both the groups. list =F ie do not want to be printed in the list form
+length(index3)
+(train3=df[index3,])
+(test3=df[-index3,])
+(t3a = table(train3$gender)) ; prop.table(t3a)
+(t3b = table(test3$gender)) ; prop.table(t3b)
+?women
+
+#proportion of male anf female is almost same in both the samples as compared to the DF`
