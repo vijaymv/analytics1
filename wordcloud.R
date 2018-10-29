@@ -6,12 +6,13 @@
 # wordcloud for generating word cloud images
 # RCurl and XML packages to download and parse web pages
 # RColorBrewer for color palettes
-
-library(wordcloud)
 library(RColorBrewer)
+library(wordcloud)
 library(SnowballC)
+library(bitops)
 library(RCurl)
 library(XML)
+library(NLP)
 library(tm)
 
 source('http://www.sthda.com/upload/rquery_wordcloud.r')
